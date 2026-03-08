@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>Siquijor – Island of Fire and Enchantment | Philippines</title>
+  <style>
+    :root {
+      --primary: #2d6a8a;
+      --teal-hero: #5b8ea6;
+      --dark: #1e2d3d;
+      --text: #444;
+      --light-bg: #f4f7f9;
+      --border: #e0e6eb;
+      --accent: #f5a623;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Source Serif Pro', serif; }
+    a { text-decoration: none; color: inherit; }
+
+    .site-nav {
+      position: absolute; top: 0; left: 0; right: 0;
+      z-index: 200; padding: 18px 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Source Serif Pro', serif; font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .logo .dot { color: var(--accent); }
+    .nav-menu { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; }
+    .nav-menu a {
+      color: rgba(255,255,255,0.85); font-size: 0.9rem;
+      padding: 6px 14px; border-radius: 20px; transition: background 0.2s;
+    }
+    .nav-menu a:hover, .nav-menu a.active { color: #fff; background: rgba(255,255,255,0.15); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+
+    .hero {
+      background: var(--teal-hero);
+      padding: 95px 0 55px;
+      position: relative;
+      overflow: visible;
+      min-height: 460px;
+    }
+    .hero-layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .hero-left { flex: 1 1 400px; max-width: 580px; }
+    .hero-right { flex: 0 0 auto; align-self: flex-end; margin-bottom: -55px; margin-left: -50px; }
+
+    .hero-left h1 {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      color: #fff; line-height: 1.2; margin-bottom: 28px;
+    }
+    .typed-wrap { white-space: nowrap; }
+    .typed-word { text-decoration: underline; text-underline-offset: 6px; }
+    .typed-cursor {
+      display: inline-block;
+      width: 3px; height: 1em;
+      background: #fff;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 0.7s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .slide-desc { margin-top: 22px; max-width: 440px; }
+    .slide-desc .dest-name {
+      font-family: 'Source Serif Pro', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: rgba(255,255,255,0.95); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .slide-desc .dest-name i { font-size: 0.95rem; color: var(--accent); }
+    .slide-desc p { font-size: 0.88rem; color: rgba(255,255,255,0.82); line-height: 1.7; margin: 0; }
+    .slide-desc .dest-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .slide-desc .tag {
+      background: rgba(255,255,255,0.18); color: #fff;
+      font-size: 0.74rem; font-weight: 600;
+      padding: 4px 12px; border-radius: 20px;
+    }
+
+    .hero-oval-wrap {
+      width: 400px;
+      height: 400px;
+      position: relative;
+    }
+    .oval-frame {
+      position: absolute; inset: 0;
+      border-radius: 60% 60% 60% 60% / 40% 40% 40% 40%;
+      overflow: hidden;
+      background: rgba(0,0,0,0.1); 
+    }
+    .oval-slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+    .oval-slide.active { opacity: 1; }
+    .oval-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+
+    .section { padding: 80px 0; }
+    .section-heading { text-align: center; margin-bottom: 44px; }
+    .section-heading h2 { font-size: 1.95rem; color: var(--dark); margin-bottom: 8px; }
+    .section-heading .line { width: 38px; height: 3px; background: var(--dark); margin: 0 auto 14px; }
+    .section-heading p { color: #666; max-width: 620px; margin: 0 auto; font-size: 0.93rem; line-height: 1.7; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+    }
+    .feat-img-col {
+      grid-row: span 2;
+      border-radius: 12px; overflow: hidden;
+      min-height: 280px;
+    }
+    .feat-img-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .feat-card {
+      background: var(--light-bg); border-radius: 10px;
+      padding: 24px 20px; transition: box-shadow 0.2s;
+    }
+    .feat-card:hover { box-shadow: 0 5px 18px rgba(0,0,0,0.08); }
+    .feat-icon { font-size: 1.9rem; color: var(--primary); margin-bottom: 10px; display: block; }
+    .feat-card h4 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.97rem; color: var(--dark); margin-bottom: 7px; }
+    .feat-card p { font-size: 0.83rem; color: #777; line-height: 1.6; margin: 0; }
+
+    .stats-bar { background: var(--light-bg); padding: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stat-box { text-align: center; padding: 8px; }
+    .stat-num { font-family: 'Source Serif Pro', serif; font-size: 2.5rem; font-weight: 700; color: var(--white); display: block; }
+    .stat-lbl { font-size: 0.78rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.6px; }
+
+    .carousel-outer { overflow: hidden; }
+    .carousel-track { display: flex; gap: 18px; transition: transform 0.45s ease; }
+    .spot-card {
+      flex: 0 0 calc(33.333% - 12px);
+      border-radius: 14px; overflow: hidden;
+      position: relative; height: 310px;
+    }
+    .spot-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .spot-label {
+      position: absolute; top: 14px; left: 14px; color: #fff;
+    }
+    .spot-label h4 { font-size: 0.97rem; margin-bottom: 2px; text-shadow: 0 1px 5px rgba(0,0,0,0.65); }
+    .spot-label span { font-size: 0.76rem; opacity: 0.85; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
+    .c-dots { text-align: center; margin-top: 18px; }
+    .c-dots button {
+      width: 9px; height: 9px; border-radius: 50%;
+      border: none; background: #ccc; margin: 0 4px;
+      cursor: pointer; padding: 0; transition: background 0.2s;
+    }
+    .c-dots button.on { background: var(--dark); }
+
+
+    .vid-wrap { position: relative; border-radius: 14px; overflow: hidden; }
+    .vid-wrap img { width: 100%; height: 370px; object-fit: cover; display: block; }
+    .play-btn {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px; height: 60px; background: rgba(255,255,255,0.9);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--dark); transition: all 0.2s; cursor: pointer;
+    }
+    .play-btn:hover { background: #fff; transform: translate(-50%, -50%) scale(1.1); color: var(--primary); }
+    .vid-text h2 { font-size: 1.75rem; color: var(--dark); }
+    .vid-divider { width: 34px; height: 3px; background: var(--dark); margin: 12px 0 16px; }
+    .vid-text p { color: #666; font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px; }
+    .two-list { column-count: 2; column-gap: 16px; list-style: none; padding: 0; margin-bottom: 22px; }
+    .two-list li { font-size: 0.85rem; color: #555; padding: 3px 0; }
+    .two-list li::before { content: "○  "; }
+    .btn-dark { background: var(--teal-hero); color: #fff; padding: 10px 26px; border-radius: 24px; font-size: 0.88rem; font-weight: 600; display: inline-block; transition: background 0.2s; border: none; cursor: pointer; }
+    .btn-dark:hover { background: var(--primary); color: #fff; }
+
+    .cta-strip { background: var(--teal-hero); padding: 58px 0; text-align: center; }
+    .cta-strip h2 { color: #fff; font-size: 1.75rem; margin-bottom: 10px; }
+    .cta-strip p { color: rgba(255,255,255,0.6); margin-bottom: 26px; }
+    .btn-wh-out { border: 2px solid #fff; color: #fff; padding: 10px 26px; border-radius: 24px; font-size: 0.88rem; font-weight: 600; display: inline-block; transition: all 0.2s; }
+    .btn-wh-out:hover { background: #fff; color: var(--dark); }
+
+    .site-footer { padding: 58px 0 0; border-top: 1px solid var(--border); }
+    .f-logo { font-family: 'Source Serif Pro', serif; font-size: 1.35rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 10px; }
+    .f-logo .dot { color: var(--accent); }
+    .f-desc { font-size: 0.85rem; color: #888; line-height: 1.7; max-width: 270px; margin-bottom: 14px; }
+    .social-row { display: flex; gap: 7px; }
+    .social-row a { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: #888; transition: all 0.2s; }
+    .social-row a:hover { border-color: var(--primary); color: var(--primary); }
+    .f-head { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--dark); margin-bottom: 14px; }
+    .f-links { list-style: none; padding: 0; }
+    .f-links li { padding: 4px 0; font-size: 0.85rem; color: #888; display: flex; align-items: center; gap: 5px; }
+    .f-links a { color: #888; transition: color 0.2s; }
+    .f-links a:hover { color: var(--primary); }
+    .f-bottom { margin-top: 38px; border-top: 1px solid var(--border); padding: 16px 0; }
+    .f-bottom p { font-size: 0.8rem; color: #aaa; margin: 0; }
+    .f-bottom a { color: var(--primary); }
+
+    @media (max-width: 991px) {
+      .hero-layout { flex-wrap: wrap; justify-content: center; }
+      .hero-left { max-width: 100%; text-align: left; }
+      .hero-right { margin: 0 auto; }
+      .hero-oval-wrap { width: 260px; height: 320px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .feat-img-col { grid-row: 1; grid-column: span 2; min-height: 220px; }
+      .spot-card { flex: 0 0 calc(50% - 9px); }
+    }
+    @media (max-width: 767px) {
+      .nav-menu { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: var(--dark); padding: 14px; z-index: 199; }
+      .nav-menu.open { display: flex; }
+      .nav-toggle { display: block; }
+      .hero-oval-wrap { width: 200px; height: 250px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feat-img-col { grid-column: 1; min-height: 180px; }
+      .spot-card { flex: 0 0 calc(100% - 9px); }
+      .section { padding: 52px 0; }
+    }
+
+.food-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  text-align: center;
+  transition: var(--transition);
+}
+.food-card:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-4px);
+}
+.food-icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+.food-card h4 { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
+.food-card p { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.6; margin: 0; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Siquijor<span class="dot">.</span></a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="container">
+    <div class="hero-layout">
+
+      <div class="hero-left">
+        <h1>
+          Let's Enjoy Your<br>
+          Trip In <span class="typed-wrap"><span class="typed-word" id="typedWord"></span><span class="typed-cursor" id="typedCursor"></span></span>
+        </h1>
+        <div class="slide-desc" id="slideDesc">
+            <div class="dest-name"><i class="bi bi-geo-alt-fill"></i><span id="descName">Siquijor</span></div>
+            <p id="descText">A tiny, mystical island province in Central Visayas the Philippines' enchanted "Island of Fire." Known for folklore, fireflies, white sand beaches, and turquoise waterfalls.</p>
+            <div class="dest-tags" id="descTags">
+              <span class="tag">Island</span>
+              <span class="tag">Beaches</span>
+              <span class="tag">Mystical</span>
+            </div>
+          </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-oval-wrap">
+          <div class="oval-frame" id="ovalSlider">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Siquijor</h2>
+      <div class="line"></div>
+      <p>Is a tiny, mystical island province in the Central Visayas, famously known as the Philippines' "Island of Fire" due to its folklore, fireflies, and traditional healers (mananambal). A popular eco-tourism destination offering white sand beaches, coral-rich diving, waterfalls, and a relaxed, affordable travel experience.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-img-col">
+        <img src="https://ichef.bbci.co.uk/images/ic/1024xn/p0hwqldg.jpg.webp" alt="Siquijor waterfall">
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon"><i class="bi bi-water"></i></span>
+        <h4>World-Class Beaches</h4>
+        <p>Powder-white sand, crystalline waters, coral reefs</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon"><i class="bi bi-tree"></i></span>
+        <h4>Untouched Nature</h4>
+        <p>Waterfalls, caves, forests, and mountain peaks</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon"><i class="bi bi-building"></i></span>
+        <h4>Rich Heritage</h4>
+        <p>Spanish-era churches, ancient Balete trees, folk healing</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon"><i class="bi bi-people"></i></span>
+        <h4>Warm Filipino Welcome</h4>
+        <p>Friendly locals, laid-back atmosphere, rich culture</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="20">0</span><span class="stat-lbl">Tourist Attractions</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="6">0</span><span class="stat-lbl">Municipalities</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="102">0</span><span class="stat-lbl">km Coastal Circumference</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="103395">0</span><span class="stat-lbl">Population</span></div></div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading"><h2>Popular Spots</h2><div class="line"></div></div>
+    <div class="carousel-outer">
+      <div class="carousel-track" id="spotTrack">
+        <div class="spot-card"><img src="https://www.thecoastalcampaign.com/wp-content/uploads/2020/05/Cambugahay-Falls-Siquijor-1-1079x675.jpg" alt="Cambugahay Falls"><div class="spot-label"><h4>Cambugahay Falls</h4><span>Lazi, Siquijor</span></div></div>
+        <div class="spot-card"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/de/40/39/oldest-balete-tree-in.jpg?w=1200&h=-1&s=1" alt="Balete Tree"><div class="spot-label"><h4>Enchanted Balete Tree</h4><span>San Antonio, Siquijor</span></div></div>
+        <div class="spot-card"><img src="https://misskhae.com/wp-content/uploads/2022/04/siquijor-header.webp" alt="Paliton Beach"><div class="spot-label"><h4>Paliton Beach</h4><span>San Juan, Siquijor</span></div></div>
+        <div class="spot-card"><img src="https://dailytravelpill.com/wp-content/uploads/2020/01/salagdoong-beach-siquijor-aerial-view.jpg" alt="Salagdoong Beach"><div class="spot-label"><h4>Salagdoong Beach</h4><span>Maria, Siquijor</span></div></div>
+        <div class="spot-card"><img src="https://iheartph.com/wp-content/uploads/2024/02/siquijor-church2.jpg" alt="Lazi Church"><div class="spot-label"><h4>Lazi Church</h4><span>Lazi, Siquijor</span></div></div>
+        <div class="spot-card"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/e8/e8/54/photo1jpg.jpg?w=300&h=300&s=1" alt="Lugnason Falls"><div class="spot-label"><h4>Lugnason Falls</h4><span>San Juan, Siquijor</span></div></div>
+      </div>
+    </div>
+    <div class="c-dots" id="spotDots"></div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--light-bg);">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="vid-wrap">
+          <img src="https://www.projectlupad.com/wp-content/uploads/2017/12/Enchanted-Siquijor-Aerial-Tour-by-Project-LUPAD.jpeg" alt="Siquijor Tour Video">
+          <a class="play-btn" href="https://www.youtube.com/watch?v=0tFVFdvs7HM&t=34s" target="_blank" rel="noopener"><i class="bi bi-play-fill"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="vid-text">
+          <h2>Take a look at Tour Video</h2>
+          <div class="vid-divider"></div>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+          <ul class="two-list">
+            <li>Outdoor recreation</li><li>Airlines</li>
+            <li>Cruise Lines</li><li>Car Rentals</li>
+            <li>Railways</li><li>Hotels</li>
+            <li>Package Tours</li><li>Travel Insurance</li>
+            <li>Guide Books</li><li>Insurance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-dark-island py-section">
+  <div class="cta-strip"> 
+    <div class="container">
+      <div class="row justify-content-center mb-5" data-aos="fade-up">
+        <div class="col-lg-6 text-center">
+          <h3 span class="section-eyebrow text-shadow">Things to Do</span></h3>
+          <h2 class="section-title text-white">Unforgettable Island <em style="color:var(--accent)">Experiences</em></h2>
+          <div class="divider divider-center"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
+          <div class="food-card">
+            <h4>Snorkeling & Diving</h4>
+            <p>Siquijor's coral-rich waters host sea turtles, vibrant reef fish, and stunning coral gardens. Dive sites like Tubod Marine Sanctuary are among the Philippines' finest.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="food-card">
+            <h4>Island Circumnavigation</h4>
+            <p>Ride the scenic 76 km coastal road by motorbike or tricycle. Dramatic sea views, mountain passes, colorful villages, and hidden coves all in one epic day trip.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="food-card">
+            <h4>Folk Healing Culture</h4>
+            <p>Visit local mananambal (folk healers) during Holy Week's Healing Festival. Traditional remedies, potions, and rituals have been practiced here for centuries.</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5" data-aos="fade-up">
+        <a href="experiences.html" class="btn btn-outline-light btn-lg">See All Experiences</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <span class="f-logo">Siquijor<span class="dot">.</span></span>
+        <p class="f-desc">The enchanted Island of Fire a hidden gem of the Philippines filled with turquoise waters, mystical forests, and unforgettable adventures.</p>
+      </div>
+      <div class="col-sm-6 col-lg-2 offset-lg-1">
+        <h5 class="f-head">Pages</h5>
+        <ul class="f-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h5 class="f-head">Resources</h5>
+        <ul class="f-links">
+          <li><a href="explore.html">Attractions</a></li>
+          <li><a href="experiences.html">Activities</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h5 class="f-head">Contact</h5>
+        <ul class="f-links">
+          <li><i class="bi bi-envelope"></i> tourism@siquijor.gov.ph</li>
+          <li><i class="bi bi-telephone"></i> +63 (035) 480-0000</li>
+          <li><i class="bi bi-geo-alt"></i> Provincial Capitol, Siquijor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <div class="container">
+      <p>&copy; <span id="yr"></span> Siquijor Tourism. Template: <a href="https://themewagon.com/themes/free-bootstrap-5-travel-agency-website-template-tour/" target="_blank">ThemeWagon / Untree.co</a> (CC BY 3.0). Adapted for Siquijor LGU.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+var SLIDES = [
+  {
+    label: 'Siquijor',
+    src: 'https://travelswithahobo.com/wp-content/uploads/2015/11/siquijor.png',
+    desc: "A tiny, mystical island province in Central Visayas. The Philippines' enchanted Island of Fire, famous for folklore, fireflies, traditional healers, white sand beaches, and turquoise waterfalls.",
+    tags: ['Island', 'Beaches', 'Mystical', 'Eco-Tourism']
+  },
+  {
+    label: 'Cambugahay Falls',
+    src: 'https://www.thecoastalcampaign.com/wp-content/uploads/2020/05/Cambugahay-Waterfalls-682x1024.jpg',
+    desc: 'Three tiers of glowing turquoise water with rope swings, bamboo rafts, and natural pools in Lazi. The crown jewel of Siquijor only P30 entrance fee.',
+    tags: ['Waterfall', 'Rope Swings', 'Natural Pool', 'P30 Entry']
+  },
+  {
+    label: 'Paliton Beach',
+    src: 'https://shewandersabroad.com/wp-content/uploads/2022/02/Paliton-Beach-Siquijor-3.jpg',
+    desc: 'The Little Boracay of Siquijor powdery white sand, swaying coconut palms, and golden sunsets in San Juan. Perfect for swimming, snorkeling, and evening strolls.',
+    tags: ['White Sand', 'Sunset', 'Snorkeling', 'San Juan']
+  },
+  {
+    label: 'Salagdoong Beach',
+    src: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/04/cb/86/enjoy-kayaking-and-many.jpg?w=900&h=500&s=1',
+    desc: 'Famous for thrilling cliff diving from platforms up to 10 meters high, plus a waterslide in Maria. Crystal-clear turquoise water makes every jump unforgettable.',
+    tags: ['Cliff Diving', 'Waterslide', 'Crystal Water', 'P30 Entry']
+  },
+  {
+    label: 'Balete Tree',
+    src: 'https://i.pinimg.com/736x/23/7e/09/237e09573a6876f5ade6b4d4b8e7aced.jpg',
+    desc: 'A 400-year-old enchanted Balete tree in San Antonio with a natural fish spa pool at its ancient roots. One of the most iconic and mystical heritage landmarks in Siquijor.',
+    tags: ['400 Years Old', 'Heritage', 'Fish Spa', 'Mystical']
+  }
+];
+
+var ovalEl   = document.getElementById('ovalSlider');
+var wordEl   = document.getElementById('typedWord');
+var descText = document.getElementById('descText');
+var descTags = document.getElementById('descTags');
+var slideIdx = 0;
+var typeTimer = null;
+var eraseTimer = null;
+
+SLIDES.forEach(function(s, i) {
+  var div = document.createElement('div');
+  div.className = 'oval-slide' + (i === 0 ? ' active' : '');
+  var img = document.createElement('img');
+  img.src = s.src;
+  img.alt = s.label;
+  div.appendChild(img);
+  ovalEl.appendChild(div);
+});
+
+var ovalSlides = ovalEl.querySelectorAll('.oval-slide');
+
+function updateDesc(idx) {
+  var s = SLIDES[idx];
+  if (descText) descText.textContent = s.desc;
+  if (descTags) {
+    descTags.innerHTML = s.tags.map(function(t) {
+      return '<span class="tag">' + t + '</span>';
+    }).join('');
+  }
+}
+
+function typeWord(text, cb) {
+  clearInterval(typeTimer);
+  clearInterval(eraseTimer);
+  var i = 0;
+  wordEl.textContent = '';
+  typeTimer = setInterval(function() {
+    wordEl.textContent = text.slice(0, ++i);
+    if (i >= text.length) {
+      clearInterval(typeTimer);
+      if (cb) setTimeout(cb, 0);
+    }
+  }, 75);
+}
+
+function eraseWord(cb) {
+  clearInterval(typeTimer);
+  clearInterval(eraseTimer);
+  eraseTimer = setInterval(function() {
+    var cur = wordEl.textContent;
+    if (cur.length === 0) {
+      clearInterval(eraseTimer);
+      if (cb) setTimeout(cb, 0);
+      return;
+    }
+    wordEl.textContent = cur.slice(0, -1);
+  }, 45);
+}
+
+function goToSlide(idx) {
+  ovalSlides[slideIdx].classList.remove('active');
+  slideIdx = idx % SLIDES.length;
+  ovalSlides[slideIdx].classList.add('active');
+  updateDesc(slideIdx);
+  typeWord(SLIDES[slideIdx].label);
+}
+
+function scheduleNext() {
+  setTimeout(function() {
+    eraseWord(function() {
+      goToSlide(slideIdx + 1);
+      scheduleNext();
+    });
+  }, 3000);
+}
+
+updateDesc(0);
+typeWord(SLIDES[0].label, function() {
+  scheduleNext();
+});
+
+document.getElementById('navToggle').addEventListener('click', function() {
+  document.getElementById('navMenu').classList.toggle('open');
+});
+
+(function() {
+  var track    = document.getElementById('spotTrack');
+  var dotsWrap = document.getElementById('spotDots');
+  if (!track || !dotsWrap) return;
+  var cards = track.querySelectorAll('.spot-card');
+  var pp    = window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3;
+  var pages = Math.ceil(cards.length / pp);
+  var cur   = 0;
+  for (var i = 0; i < pages; i++) {
+    var btn = document.createElement('button');
+    if (i === 0) btn.classList.add('on');
+    (function(idx) { btn.addEventListener('click', function() { moveTo(idx); }); })(i);
+    dotsWrap.appendChild(btn);
+  }
+  function moveTo(idx) {
+    cur = idx;
+    var w = cards[0].offsetWidth + 18;
+    track.style.transform = 'translateX(-' + (cur * pp * w) + 'px)';
+    dotsWrap.querySelectorAll('button').forEach(function(b, i) { b.classList.toggle('on', i === cur); });
+  }
+  setInterval(function() { moveTo((cur + 1) % pages); }, 4000);
+})();
+
+var counted = false;
+window.addEventListener('scroll', function() {
+  if (counted) return;
+  var el = document.querySelector('.stats-bar');
+  if (el && el.getBoundingClientRect().top < window.innerHeight - 80) {
+    counted = true;
+    document.querySelectorAll('.stat-num').forEach(function(el) {
+      var target = +el.dataset.target; var step = target / 80; var cur = 0;
+      var t = setInterval(function() {
+        cur += step;
+        if (cur >= target) { cur = target; clearInterval(t); }
+        el.textContent = Math.floor(cur).toLocaleString();
+      }, 18);
+    });
+  }
+});
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+</script>
+</body>
+</html>
